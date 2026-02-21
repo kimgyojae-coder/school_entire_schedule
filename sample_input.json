@@ -1,0 +1,25 @@
+{
+  "days": ["Mon", "Tue", "Wed", "Thu", "Fri"],
+  "periods_per_day": 5,
+  "grade_classes": {
+    "3": 2,
+    "4": 2
+  },
+  "grade_subject_hours": {
+    "3": {"음악": 2, "체육": 2},
+    "4": {"음악": 2, "체육": 2}
+  },
+  "teachers": [
+    {"name": "김음악", "subject": "음악", "weekly_hours": 8, "grades": [3, 4]},
+    {"name": "박체육", "subject": "체육", "weekly_hours": 8, "grades": [3, 4]}
+  ],
+  "class_unavailable": {
+    "3-1": ["Mon-1"],
+    "4-2": ["Fri-5"]
+  },
+  "teacher_unavailable": {
+    "김음악": ["Wed-3"],
+    "박체육": ["Tue-2"]
+  },
+  "max_same_subject_per_day": 1
+}
