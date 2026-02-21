@@ -1,0 +1,39 @@
+# 초등학교 전담교사 시간표 생성기
+
+전담교사(예: 음악, 체육)의 **교사 수/시수/담당 학년/과목**과
+학년별 학급 수, 시간 배정 제약을 입력하면,
+학급/교사 충돌 없이 가능한 시간표 경우의 수를 생성합니다.
+
+## 기능
+- 학급별 필요 시수(학년별 과목 시수)를 만족하는 시간표 탐색
+- 교사 충돌(동시간대 중복 수업) 자동 방지
+- 학급 충돌(동시간대 중복 과목) 자동 방지
+- 교사별 주당 수업시수 제한 반영
+- 학급/교사별 불가 시간대 반영
+- 가능한 해를 여러 개 생성해 사용자 선택 가능
+
+## 실행 방법
+```bash
+python3 scheduler.py sample_input.json --max-solutions 3 --output solutions.json
+```
+
+## 입력 포맷(JSON)
+- `days`: 요일 목록
+- `periods_per_day`: 하루 교시 수
+- `grade_classes`: 학년별 학급 수 (`{"3": 2, "4": 2}`)
+- `grade_subject_hours`: 학년별 과목별 주당 시수
+- `teachers`: 전담교사 목록
+  - `name`, `subject`, `weekly_hours`, `grades`
+- `class_unavailable`: 학급별 배정 불가 시간대
+- `teacher_unavailable`: 교사별 배정 불가 시간대
+- `max_same_subject_per_day`: 같은 과목 1일 최대 배정 횟수
+
+## 출력
+- 터미널에 가능한 시간표를 순서대로 출력
+- `--output` 파일에 모든 해를 JSON 배열로 저장
+
+## 참고
+해가 없으면 제약이 너무 강한 경우입니다. 다음을 완화해 보세요.
+- 교사 주당 시수 증가
+- 불가 시간대 축소
+- `max_same_subject_per_day` 상향
